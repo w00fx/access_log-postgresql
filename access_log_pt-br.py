@@ -85,8 +85,8 @@ def esc_controle(f_log, arq):
     file.close()
 
 
-def acessarAccessLog(banco):
-    with open('access_log') as access:
+def acessarAccessLog(banco, logs):
+    with open(logs) as access:
         arq = arq_controle('controle_accesslog')
         access = reversed(list(access))
         j = 0
@@ -123,12 +123,13 @@ try:
     print('Certifique que tenha um banco de dados criado para receber os logs!')
     print('Antes vamos no conectar no banco de dados...\n\n')
     banco = conectar_db()
+    logs = input('Insira o caminho do access_log: ')
     while True:
         print('1 - Criar tabelas')
         print('2 - Buscar por dados e inserir no banco')
         print('3 - Deixar ele buscando por dados a cada 30s')
         print('0 - Sair')
-        opcao = input('\nInsira sua opcao:')
+        opcao = input('\nInsira sua opcao: ')
 
         if opcao == '1':
             criar_tabelas(banco)
@@ -136,7 +137,7 @@ try:
             os.system('cls')
 
         elif opcao == '2':
-            acessarAccessLog(banco)
+            acessarAccessLog(banco, logs)
             print('Dados inseridos!')
             input('Pressione qualquer tecla para continuar...')
             os.system('cls')
@@ -151,7 +152,7 @@ try:
             print('Para parar use CTRL+C')
             while True:
                 try:
-                    acessarAccessLog(banco)
+                    acessarAccessLog(banco, logs)
                     time.sleep(seg)
                 except KeyboardInterrupt:
                     print('Parando a verificacao por tempo.\n')
