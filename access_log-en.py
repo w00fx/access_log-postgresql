@@ -85,8 +85,8 @@ def esc_controle(f_log, arq):
     file.close()
 
 
-def acessarAccessLog(banco):
-    with open('access_log') as access:
+def acessarAccessLog(banco, logs):
+    with open(logs) as access:
         arq = arq_controle('control_accesslog')
         access = reversed(list(access))
         j = 0
@@ -123,6 +123,7 @@ try:
     print('Make sure you have a database created to receive the logs!')
     print('Before let\'s connect in the database...\n\n')
     banco = conectar_db()
+    logs = input('Enter the path of access_log: ')
     while True:
         print('1 - Create tables')
         print('2 - Search for data and insert in database')
@@ -136,7 +137,7 @@ try:
             os.system('cls')
 
         elif opcao == '2':
-            acessarAccessLog(banco)
+            acessarAccessLog(banco, logs)
             print('Logs inserted!')
             input('Press any key to continue ...')
             os.system('cls')
@@ -151,7 +152,7 @@ try:
             print('To stop use CTRL+C')
             while True:
                 try:
-                    acessarAccessLog(banco)
+                    acessarAccessLog(banco, logs)
                     time.sleep(seg)
                 except KeyboardInterrupt:
                     print('Stopping....\n')
