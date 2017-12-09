@@ -17,6 +17,8 @@ pip install pygresql
 
 e está pronto para ser usado.
 
+### Windows
+Se estiver usando esse codigo no Windows, certifique que os caminhos C:\Program Files\PostgreSQL\[build]\ e C:\Program Files\PostgreSQL\[build]\bin estejam no PATH.
 
 ## English
 Code that takes the Apache's access_log logs and put in a database.
@@ -32,3 +34,6 @@ pip install pygresql
 
 
 and is ready to be used.
+
+### Windows
+If you using this script on Windows, put C:\Program Files\PostgreSQL\[build]\ and C:\Program Files\PostgreSQL\[build]\bin on PATH.
